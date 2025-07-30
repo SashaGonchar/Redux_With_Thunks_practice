@@ -22,3 +22,7 @@ export default function userListReducer(state = initialState, action) {
     }
 
 }
+
+export function addUser (user) {
+    return {type: "userList/addUser", payload: user };
+}

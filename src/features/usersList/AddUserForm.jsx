@@ -1,11 +1,21 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
+import {addUser} from "./userListSlice.js"
 
 function AddUserForm() {
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
     const dispatch = useDispatch();
+
+    const newUser = {name, email, id: Date.now()}
+
+    function handeSubmit(e) {
+        e.preventDefault();
+        dispatch(addUser(newUser))
+        setName("");
+        setEmail("");
+    }
 
     return (
         <form className="add-user-form">
@@ -17,10 +27,7 @@ function AddUserForm() {
                    placeholder="Email"
                    value={email}
                    onChange={(e) => setEmail(e.target.value)}/>
-            <button type="submit" onClick={(e) => {
-                e.preventDefault()
-                dispatch({type: "userList/addUser", payload: {name, email, id:Date.now()}})
-            }}
+            <button type="submit" onClick={handeSubmit}
             >Add User
             </button>
         </form>
