@@ -1,37 +1,40 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteUser, fetchData} from "./userListSlice.js"
+import {selectUser} from "../userDetails/userDetailSlice.js";
 
 function UserList() {
-    const users = useSelector((state => state.users));
-    const loading = useSelector((state => state.loading));
-    const error = useSelector((state => state.error));
+    const dispatch = useDispatch();
+    const users = useSelector((state => state.userData.users));
+    const loading = useSelector((state => state.userData.loading));
+    const error = useSelector((state => state.userData.error));
 
 
 
     return (
-    <div className="user-list">
-      <h2>User List</h2>
+        <div className="user-list">
+            <h2>User List</h2>
 
-      {/* Кнопка загрузки */}
-      <button className="load-btn">Load Users</button>
+            {/* Кнопка загрузки */}
+            <button className="load-btn" onClick={() => dispatch(fetchData())}>Load Users</button>
 
 
-        {loading && <p>Loading...</p>}
-        {error && <p>Error...{error}</p>}
-      <ul>
-          {users.map((user) => (
-              <li key={user.id}>
-              <span>{user.name} - {user.email}</span>
+            {loading && <p>Loading...</p>}
+            {error && <p>Error...{error}</p>}
+            <ul>
+                {users.map((user) => (
+                    <li key={user.id}>
+                        <span>{user.name} - {user.email}</span>
 
-              <div className="btn-group">
-                  <button className="select-btn">Select</button>
+                        <div className="btn-group">
+                            <button className="select-btn" onClick={() => dispatch(selectUser(user.id))}>Select</button>
 
-                  <button className="delete-btn">Delete</button>
-              </div>
-          </li>))
-          }
+                            <button className="delete-btn" onClick={() => dispatch(deleteUser(user.id))}>Delete</button>
+                        </div>
+                    </li>))
+                }
 
-      </ul>
-    </div>
+            </ul>
+        </div>
     );
 }
 

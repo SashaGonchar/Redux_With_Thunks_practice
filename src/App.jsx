@@ -2,7 +2,7 @@
 
 import AddUserForm from "./features/usersList/AddUserForm";
 import UserList from "./features/usersList/UserList";
-import SelectedUserDetails from "./features/userDetails/SelectedUserDetails";
+import SelectedUserDetails from "./features/userDetails/SelectedUserDetails.jsx";
 
 function App() {
   return (
