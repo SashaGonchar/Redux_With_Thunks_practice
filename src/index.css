@@ -1,7 +1,14 @@
 :root {
   --font-family: "Inter", "Roboto", sans-serif;
+  
+  /* Light theme colors (default) */
   --color-bg: #f7f8fa;
   --color-text: #333;
+  --color-card-bg: #fff;
+  --color-border: #ccc;
+  --color-border-light: #eee;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-input-bg: #fff;
 
   --color-green: #4caf50;
   --color-green-dark: #388e3c;
@@ -16,6 +23,61 @@
   --color-orange-dark: #ef6c00;
 
   --radius: 4px;
+}
+
+/* Dark theme colors */
+[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-text: #e0e0e0;
+  --color-card-bg: #2d2d2d;
+  --color-border: #555;
+  --color-border-light: #404040;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-input-bg: #3a3a3a;
+
+  /* Adjust accent colors for better contrast in dark mode */
+  --color-green: #66bb6a;
+  --color-green-dark: #4caf50;
+
+  --color-blue: #42a5f5;
+  --color-blue-dark: #2196f3;
+
+  --color-red: #ef5350;
+  --color-red-dark: #e53935;
+
+  --color-orange: #ffa726;
+  --color-orange-dark: #ff9800;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--color-card-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 50px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.theme-toggle:before {
+  content: '🌙';
+  margin-right: 8px;
+}
+
+[data-theme="dark"] .theme-toggle:before {
+  content: '☀️';
 }
 
 * {
@@ -51,9 +113,9 @@ body {
    Стили для блока selected-user-details
 ---------------------------------*/
 .selected-user-details {
-  background-color: #fff;
+  background-color: var(--color-card-bg);
   border-radius: var(--radius);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--color-shadow);
   padding: 1rem;
   margin-bottom: 1rem; /* чтобы отодвинуть от формы */
 }
@@ -98,10 +160,12 @@ body {
   flex: 1;
   padding: 0.4rem;
   font-size: 0.9rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   outline: none;
   transition: border-color 0.2s;
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
 }
 
 .add-user-form input:focus {
@@ -127,10 +191,10 @@ body {
    Список пользователей
 ---------------------------------*/
 .user-list {
-  background-color: #fff;
+  background-color: var(--color-card-bg);
   padding: 1rem;
   border-radius: var(--radius);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--color-shadow);
 }
 
 .user-list h2 {
@@ -173,7 +237,7 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.25rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border-light);
   font-size: 0.9rem; /* поменьше текст */
 }
 
